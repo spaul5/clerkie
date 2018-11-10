@@ -33,4 +33,69 @@ extension UIColor {
     @nonobjc class var clerkieRed: UIColor {
         return UIColor(red: 234.0 / 255.0, green: 63.0 / 255.0, blue: 81.0 / 255.0, alpha: 1.0)
     }
+    
+    @nonobjc class var clerkieLightGray: UIColor {
+        return UIColor(red: 222.0 / 255.0, green: 222.0 / 255.0, blue: 222.0 / 255.0, alpha: 1.0)
+    }
+}
+
+extension UIViewController {
+    
+    func presentFromRight(_ vc: UIViewController, completion: (()-> Void)? = nil) {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
+        DispatchQueue.main.async {
+            self.view.window!.layer.add(transition, forKey: kCATransition)
+            self.present(vc, animated: false, completion: completion)
+        }
+    }
+    
+    func dismissFromLeft(completion: (()-> Void)? = nil) {
+        let transition = CATransition()
+        transition.duration = 0.4
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
+        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
+        DispatchQueue.main.async {
+            self.view.window!.layer.add(transition, forKey: kCATransition)
+            self.dismiss(animated: false, completion: completion)
+        }
+    }
+    
+    func addDismissScreenEdgePanGesture() {
+        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(screenEdgeSwiped))
+        edgePan.edges = .left
+        
+        view.addGestureRecognizer(edgePan)
+    }
+    
+    
+    @objc func screenEdgeSwiped(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+        if recognizer.state == .recognized {
+            print("Screen edge swiped!")
+            dismissFromLeft()
+        }
+    }
+}
+
+class PaddingLabel: UILabel {
+    
+    var edgeInsets: UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect.inset(by: edgeInsets))
+    }
+    
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.inset(by: edgeInsets))
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize(width: size.width + edgeInsets.left + edgeInsets.right,
+                      height: size.height + edgeInsets.top + edgeInsets.bottom)
+    }
 }

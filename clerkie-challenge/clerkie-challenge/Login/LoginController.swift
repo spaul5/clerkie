@@ -172,7 +172,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         let err = core.findUser(usernameTextField.text!, password: password)
         if err == nil {
             print("login successful")
-            // performSegue
+            performSegue(withIdentifier: "loginSegue", sender: nil)
             return
         }
         
@@ -187,7 +187,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signupButtonTap(_ sender: Any) {
-        showHideSignupView(true)
+        performSegue(withIdentifier: "loginSegue", sender: nil)
+//        showHideSignupView(true)
     }
     
     @IBAction func signupCloseTap(_ sender: Any) {
@@ -204,7 +205,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         let duration = (animate) ? 0.25 : 0.0
         if show {
             self.signupInnerView.isHidden = false
-            signupViewBottom.constant = 270
+            signupViewBottom.constant = self.view.frame.height / 2 - 160//270
             self.signupViewHeight.constant = 320
             self.signupViewWidth.constant = self.view.frame.width - 60
             UIView.animate(withDuration: duration, animations: {
@@ -248,6 +249,16 @@ class LoginController: UIViewController, UITextFieldDelegate {
             showError(signupError, "Passwords don't match")
             return
         }
+        
+        let createSuccess = core.createUser(signupUsername.text!, password: p)
+        if createSuccess {
+            print("signup success")
+            performSegue(withIdentifier: "loginSegue", sender: nil)
+            return
+        }
+        
+        print("signup fail")
+        showError(signupError, "Error creating account. Please try again.")
     }
     
     func showError(_ error: UILabel, _ text: String?) {
