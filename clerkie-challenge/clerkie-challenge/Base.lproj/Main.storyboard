@@ -359,10 +359,10 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDr-8V-9FD">
-                                        <rect key="frame" x="4" y="2" width="40" height="40"/>
+                                        <rect key="frame" x="4" y="2" width="41" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="SI6-rr-80u"/>
-                                            <constraint firstAttribute="width" constant="40" id="kZh-MO-gyF"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="kZh-MO-gyF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                         <state key="normal" title="Back">
@@ -398,6 +398,7 @@
                                     <constraint firstAttribute="trailing" secondItem="VsD-N7-2Jr" secondAttribute="trailing" constant="16" id="NMp-Pp-oY7"/>
                                     <constraint firstAttribute="height" constant="44" id="UkN-TO-Oov"/>
                                     <constraint firstItem="BWA-re-u2D" firstAttribute="centerY" secondItem="2mk-aE-tFD" secondAttribute="centerY" id="XrD-1Z-P2O"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oDr-8V-9FD" secondAttribute="trailing" constant="100" id="r42-nq-yxX"/>
                                     <constraint firstItem="VsD-N7-2Jr" firstAttribute="centerY" secondItem="2mk-aE-tFD" secondAttribute="centerY" id="tcg-MD-nGq"/>
                                 </constraints>
                             </view>
@@ -420,60 +421,60 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G1L-wb-PC7">
-                                                                    <rect key="frame" x="7" y="2" width="23" height="23"/>
+                                                                    <rect key="frame" x="6" y="2" width="27.5" height="27.5"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="23" id="Hop-tN-JCt"/>
-                                                                        <constraint firstAttribute="width" constant="23" id="fMs-Xx-zCa"/>
+                                                                        <constraint firstAttribute="height" constant="27.5" id="Hop-tN-JCt"/>
+                                                                        <constraint firstAttribute="width" constant="27.5" id="fMs-Xx-zCa"/>
                                                                     </constraints>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                            <real key="value" value="11.5"/>
+                                                                            <real key="value" value="13.25"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFz-o0-H1r" customClass="PaddingLabel" customModule="clerkie_challenge" customModuleProvider="target">
-                                                                    <rect key="frame" x="35" y="2" width="39.5" height="40"/>
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" text="message" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nue-vU-eFx">
+                                                                    <rect key="frame" x="38" y="2" width="75" height="40"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="cyt-Ty-GnA"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="35e-FY-pOR"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
+                                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                            <real key="value" value="11.5"/>
+                                                                            <real key="value" value="13.25"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uyq-u6-1Xy" customClass="PaddingLabel" customModule="clerkie_challenge" customModuleProvider="target">
-                                                                    <rect key="frame" x="327.5" y="2" width="39.5" height="40"/>
+                                                                </textView>
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" scrollEnabled="NO" editable="NO" text="message" translatesAutoresizingMaskIntoConstraints="NO" id="Emb-GZ-bEX">
+                                                                    <rect key="frame" x="294" y="2" width="75" height="40"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="1aD-GU-80i"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="pxf-0E-15e"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
+                                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                            <real key="value" value="11.5"/>
+                                                                            <real key="value" value="13.25"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
-                                                                </label>
+                                                                </textView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="Uyq-u6-1Xy" secondAttribute="bottom" constant="2" id="6E2-WE-6zM"/>
-                                                                <constraint firstAttribute="trailing" secondItem="Uyq-u6-1Xy" secondAttribute="trailing" constant="8" id="EF8-GX-vYP"/>
-                                                                <constraint firstItem="Uyq-u6-1Xy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hpR-0M-d8z" secondAttribute="leading" constant="150" id="M20-7q-FmW"/>
-                                                                <constraint firstItem="vFz-o0-H1r" firstAttribute="leading" secondItem="hpR-0M-d8z" secondAttribute="leading" constant="35" id="MCR-qD-r8H"/>
-                                                                <constraint firstAttribute="bottom" secondItem="vFz-o0-H1r" secondAttribute="bottom" constant="2" id="T3z-JW-KWb"/>
-                                                                <constraint firstItem="vFz-o0-H1r" firstAttribute="top" secondItem="hpR-0M-d8z" secondAttribute="top" constant="2" id="V50-IR-baD"/>
-                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vFz-o0-H1r" secondAttribute="trailing" constant="150" id="XoF-Ek-1P2"/>
-                                                                <constraint firstItem="Uyq-u6-1Xy" firstAttribute="top" secondItem="hpR-0M-d8z" secondAttribute="top" constant="2" id="Zik-Nr-Eu3"/>
-                                                                <constraint firstItem="G1L-wb-PC7" firstAttribute="leading" secondItem="hpR-0M-d8z" secondAttribute="leading" constant="7" id="fv2-0r-k3Y"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Emb-GZ-bEX" secondAttribute="trailing" constant="6" id="5Xd-YH-unF"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nue-vU-eFx" secondAttribute="trailing" constant="150" id="8dE-OC-eJb"/>
+                                                                <constraint firstItem="Emb-GZ-bEX" firstAttribute="top" secondItem="hpR-0M-d8z" secondAttribute="top" constant="2" id="9oM-NL-hcI"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Emb-GZ-bEX" secondAttribute="bottom" constant="2" id="Tj5-Xt-4mo"/>
+                                                                <constraint firstAttribute="bottom" secondItem="nue-vU-eFx" secondAttribute="bottom" constant="2" id="Tjv-ob-vLp"/>
+                                                                <constraint firstItem="Emb-GZ-bEX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hpR-0M-d8z" secondAttribute="leading" constant="150" id="Uot-f8-6eT"/>
+                                                                <constraint firstItem="nue-vU-eFx" firstAttribute="leading" secondItem="hpR-0M-d8z" secondAttribute="leading" constant="38" id="YsS-vq-oZX"/>
+                                                                <constraint firstItem="nue-vU-eFx" firstAttribute="top" secondItem="hpR-0M-d8z" secondAttribute="top" constant="2" id="fJR-tC-w20"/>
+                                                                <constraint firstItem="G1L-wb-PC7" firstAttribute="leading" secondItem="hpR-0M-d8z" secondAttribute="leading" constant="6" id="fv2-0r-k3Y"/>
                                                                 <constraint firstItem="G1L-wb-PC7" firstAttribute="top" secondItem="hpR-0M-d8z" secondAttribute="top" constant="2" id="s6b-au-gni"/>
                                                             </constraints>
                                                         </view>
@@ -487,8 +488,8 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="receivedImage" destination="G1L-wb-PC7" id="FT7-J6-OpQ"/>
-                                                    <outlet property="receivedMessageText" destination="vFz-o0-H1r" id="FAz-4e-dJi"/>
-                                                    <outlet property="sentMessageText" destination="Uyq-u6-1Xy" id="rOk-bc-3Hd"/>
+                                                    <outlet property="receivedMessageText" destination="nue-vU-eFx" id="RKg-PU-LpK"/>
+                                                    <outlet property="sentMessageText" destination="Emb-GZ-bEX" id="yR1-Mg-ZO8"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

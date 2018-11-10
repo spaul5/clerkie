@@ -203,7 +203,8 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
         messagesTableView.dataSource = self// chats as? UITableViewDataSource
         
         messagesTableView.rowHeight = UITableView.automaticDimension
-        messagesTableView.estimatedRowHeight = 27
+        messagesTableView.estimatedRowHeight = 31.5
+        messagesTableView.allowsSelection = false
         reloadData()
     }
     
@@ -230,7 +231,7 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
         
         guard let m = message(at: indexPath.row) else { return cell }
         
-        var textLabel: PaddingLabel
+        var textLabel: UITextView
         if m.sent {
             textLabel = cell.sentMessageText
             cell.receivedMessageText.isHidden = true
@@ -246,12 +247,14 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
                 cell.receivedImage.image = user.image
             }
         }
-        
+        textLabel.isScrollEnabled = false
+        textLabel.isEditable = false
         textLabel.text = m.text
-        textLabel.edgeInsets = UIEdgeInsets(top: 2.0, left: 6.0, bottom: 2.0, right: 6.0)
+        textLabel.textContainerInset = UIEdgeInsets(top: 4.0, left: 8.0, bottom: 4.0, right: 8.0)
         textLabel.backgroundColor = (m.sent) ? UIColor.clerkieRed : UIColor.clerkieLightGray
+        
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            if textLabel.frame.width == 24 { textLabel.textAlignment = .center }
+            textLabel.sizeToFit()
         }
         
         return cell
@@ -284,7 +287,7 @@ extension ChatController: UIScrollViewDelegate {
 class MessageCell: UITableViewCell {
     
     @IBOutlet weak var receivedImage: UIImageView!
-    @IBOutlet weak var receivedMessageText: PaddingLabel!
-    @IBOutlet weak var sentMessageText: PaddingLabel!
+    @IBOutlet weak var receivedMessageText: UITextView!
+    @IBOutlet weak var sentMessageText: UITextView!
     
 }
