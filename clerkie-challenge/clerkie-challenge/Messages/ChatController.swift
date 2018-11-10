@@ -28,6 +28,7 @@ class ChatController: UIViewController {
     @IBOutlet weak var chatName: UILabel!
     
     private var keyboardVisible: Bool = false
+    private var fakeSend: Bool = true
     
     private var keyboardWillShowObserver = false {
         didSet {
@@ -134,13 +135,15 @@ class ChatController: UIViewController {
         showHideGoButton(false)
         
         if message(at: messages.count - 2) == nil || message(at: messages.count - 2)!.sent {
-            sendFakeMessage("Lebroon Jaaams")
+            sendFakeMessage("Lebroon Jaaames")
+            if fakeSend { sendFakeMessage("When I say LeBron James' name, I like to say it like: LeBroooon Jaaames. I'm his hype man.") }
         }
     }
     
     func sendFakeMessage(_ text: String) {
         messages.append(Message(sent: false, image: nil, text: text))
         reloadData()
+        fakeSend = !fakeSend
     }
 }
 
@@ -203,7 +206,7 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
         messagesTableView.dataSource = self// chats as? UITableViewDataSource
         
         messagesTableView.rowHeight = UITableView.automaticDimension
-        messagesTableView.estimatedRowHeight = 31.5
+        messagesTableView.estimatedRowHeight = 28
         messagesTableView.allowsSelection = false
         reloadData()
     }
@@ -231,30 +234,32 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
         
         guard let m = message(at: indexPath.row) else { return cell }
         
-        var textLabel: UITextView
-        if m.sent {
-            textLabel = cell.sentMessageText
-            cell.receivedMessageText.isHidden = true
-            if let receivedImage = cell.receivedImage {
-                receivedImage.removeFromSuperview()
-            }
+        let textLabel: UITextView = (m.sent) ? cell.sentMessageText : cell.receivedMessageText
+        let otherLabel: UITextView = (!m.sent) ? cell.sentMessageText : cell.receivedMessageText
+        
+        if !m.sent, let b = message(at: indexPath.row - 1)?.sent, b {
+            cell.receivedImage.isHidden = false
+            cell.receivedImage.image = user.image
         } else {
-            textLabel = cell.receivedMessageText
-            cell.sentMessageText.isHidden = true
-            if let receivedImage = cell.receivedImage, let b = message(at: indexPath.row - 1)?.sent, !b {
-                receivedImage.removeFromSuperview()
-            } else {
-                cell.receivedImage.image = user.image
-            }
+            cell.receivedImage.isHidden = true
         }
+        
+        textLabel.isHidden = false
         textLabel.isScrollEnabled = false
         textLabel.isEditable = false
         textLabel.text = m.text
         textLabel.textContainerInset = UIEdgeInsets(top: 4.0, left: 8.0, bottom: 4.0, right: 8.0)
         textLabel.backgroundColor = (m.sent) ? UIColor.clerkieRed : UIColor.clerkieLightGray
         
+        otherLabel.isScrollEnabled = false
+        otherLabel.isEditable = false
+        otherLabel.text = nil
+        otherLabel.textContainerInset = UIEdgeInsets(top: 4.0, left: 8.0, bottom: 4.0, right: 8.0)
+        otherLabel.isHidden = true
+        
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             textLabel.sizeToFit()
+            otherLabel.sizeToFit()
         }
         
         return cell
