@@ -19,8 +19,8 @@ class BarChart: UIView {
     
     var dataEntry: [BarChartDataEntry] = []
     
-    var workoutDuration = [String]()
-    var beatsPerMinute = [String]()
+    var dataPoints = [String]()
+    var values = [String]()
     
     var vertical: Bool = true {
         didSet {
@@ -32,74 +32,65 @@ class BarChart: UIView {
         }
     }
     
-    var delegate: GetChartData! {
-        didSet {
-            populateData()
-            barChartSetup()
-        }
+    func populateData(dataPoints: [String], v: [String]) {
+        self.dataPoints = dataPoints
+        self.values = v
     }
     
-    func populateData() {
-        workoutDuration = delegate.workoutDuration
-        beatsPerMinute = delegate.beatsPerMinute
-    }
-    
-    func barChartSetup() {
+    func setBarChart() {
         self.backgroundColor = UIColor.white
-        let barChartView = (vertical) ? verticalBarChartView! : horizontalBarChartView!
+        let chartView = (vertical) ? verticalBarChartView! : horizontalBarChartView!
         
-        self.addSubview(barChartView)
-        barChartView.translatesAutoresizingMaskIntoConstraints = false
-        barChartView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
-        barChartView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        barChartView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        barChartView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        self.addSubview(chartView)
+        chartView.translatesAutoresizingMaskIntoConstraints = false
+        chartView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
+        chartView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        chartView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        chartView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     
-        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+        chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
         
-        if vertical {
-            setBarChart(dataPoints: workoutDuration, v: beatsPerMinute)
-        } else {
-            setBarChart(dataPoints: beatsPerMinute, v: workoutDuration)
-        }
+        setBarChartData()
     }
     
-    func setBarChart(dataPoints: [String], v: [String]) {
-        let barChartView = (vertical) ? verticalBarChartView! : horizontalBarChartView!
+    func setBarChartData() {
+        let chartView = (vertical) ? verticalBarChartView! : horizontalBarChartView!
         
-        barChartView.noDataTextColor = UIColor.white
-        barChartView.noDataText = "No data for the Chart."
-        barChartView.backgroundColor = UIColor.white
+        chartView.noDataTextColor = UIColor.white
+        chartView.noDataText = "No data for the Chart."
+        chartView.backgroundColor = UIColor.white
         
-        let values = (vertical) ? v : v.reversed()
+        let v = (vertical) ? self.values : self.values.reversed()
         for i in 0..<dataPoints.count {
-            dataEntry.append(BarChartDataEntry(x: Double(i), y: Double(values[i])!))
+            dataEntry.append(BarChartDataEntry(x: Double(i), y: Double(v[i])!))
         }
         
-        let chartDataSet = BarChartDataSet(values: dataEntry, label: "BPM")
+        let chartDataSet = BarChartDataSet(values: dataEntry, label: "Heart Beats per Minute during a Workout")
+        chartDataSet.colors = [UIColor.clerkieRed]
+        
         let chartData = BarChartData()
         chartData.addDataSet(chartDataSet)
-        chartData.setDrawValues(false)
-        chartDataSet.colors = [UIColor.clerkieRed]
+        chartData.setDrawValues(true)
+        chartData.barWidth = 0.5
         
         // axes
         let formatter: ChartFormatter = ChartFormatter()
-        if vertical {
-            formatter.setValues(values: dataPoints)
-        } else {
-            formatter.setValues(values: dataPoints.reversed())
-        }
+        let d = (vertical) ? self.dataPoints : self.dataPoints.reversed()
+        formatter.setValues(values: d)
         
         let xAxis = XAxis()
         xAxis.valueFormatter = formatter
-        barChartView.xAxis.labelPosition = .bottom
-        barChartView.xAxis.drawGridLinesEnabled = false
-        barChartView.xAxis.valueFormatter = xAxis.valueFormatter
-        barChartView.chartDescription?.enabled = false
-        barChartView.legend.enabled = true
-        barChartView.rightAxis.enabled = false
-        barChartView.leftAxis.drawGridLinesEnabled = false
-        barChartView.leftAxis.drawLabelsEnabled = true
-        barChartView.data = chartData
+        
+        chartView.xAxis.labelPosition = .bottom
+        chartView.xAxis.drawGridLinesEnabled = false
+        chartView.xAxis.valueFormatter = xAxis.valueFormatter
+        chartView.chartDescription?.enabled = false
+        chartView.legend.enabled = true
+        chartView.rightAxis.enabled = false
+        chartView.leftAxis.spaceBottom = 0.65
+        chartView.leftAxis.drawGridLinesEnabled = false
+        chartView.leftAxis.drawLabelsEnabled = true
+        chartView.data = chartData
+        chartView.drawValueAboveBarEnabled = true
     }
 }

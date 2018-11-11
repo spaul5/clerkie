@@ -390,11 +390,12 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNy-hp-A1g">
-                                        <rect key="frame" x="16" y="16" width="86" height="40"/>
+                                        <rect key="frame" x="16" y="16" width="94" height="40"/>
                                         <color key="backgroundColor" red="0.91923778550000002" green="0.2483204158" blue="0.31848482340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Ic1-SZ-SlO"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title="Bar Chart">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -410,11 +411,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMh-wr-7Xv">
-                                        <rect key="frame" x="16" y="72" width="160" height="40"/>
+                                        <rect key="frame" x="16" y="72" width="175" height="40"/>
                                         <color key="backgroundColor" red="0.91923778550000002" green="0.2483204158" blue="0.31848482340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="aDg-9h-wsp"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title="Horizontal Bar Chart">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -429,13 +431,59 @@
                                             <action selector="horizontalBarChartTap:" destination="p8r-XX-nkn" eventType="touchUpInside" id="GhH-76-nHK"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9tr-Us-Vt6">
+                                        <rect key="frame" x="16" y="128" width="99" height="40"/>
+                                        <color key="backgroundColor" red="0.91923778550000002" green="0.2483204158" blue="0.31848482340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ueu-ae-F8E"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="Line Chart">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="lineChartTap:" destination="p8r-XX-nkn" eventType="touchUpInside" id="Tl7-cX-pd5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhT-fX-blc">
+                                        <rect key="frame" x="16" y="184" width="135" height="40"/>
+                                        <color key="backgroundColor" red="0.91923778550000002" green="0.2483204158" blue="0.31848482340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="au3-ba-20o"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="Duo Line Chart">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="douLineChartTap:" destination="p8r-XX-nkn" eventType="touchUpInside" id="gKL-R3-srB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="zhT-fX-blc" firstAttribute="leading" secondItem="nWe-3k-ae9" secondAttribute="leading" constant="16" id="2RY-Gl-6U1"/>
+                                    <constraint firstItem="zhT-fX-blc" firstAttribute="top" secondItem="9tr-Us-Vt6" secondAttribute="bottom" constant="16" id="D1Y-AF-oqq"/>
+                                    <constraint firstItem="9tr-Us-Vt6" firstAttribute="leading" secondItem="nWe-3k-ae9" secondAttribute="leading" constant="16" id="DB0-Qb-cA1"/>
                                     <constraint firstItem="RNy-hp-A1g" firstAttribute="top" secondItem="nWe-3k-ae9" secondAttribute="top" constant="16" id="Ie9-my-Ayl"/>
                                     <constraint firstItem="RNy-hp-A1g" firstAttribute="leading" secondItem="nWe-3k-ae9" secondAttribute="leading" constant="16" id="KlG-My-KP9"/>
                                     <constraint firstItem="ZMh-wr-7Xv" firstAttribute="leading" secondItem="nWe-3k-ae9" secondAttribute="leading" constant="16" id="b65-GA-Wjg"/>
                                     <constraint firstItem="ZMh-wr-7Xv" firstAttribute="top" secondItem="RNy-hp-A1g" secondAttribute="bottom" constant="16" id="k8G-yF-6gK"/>
+                                    <constraint firstItem="9tr-Us-Vt6" firstAttribute="top" secondItem="ZMh-wr-7Xv" secondAttribute="bottom" constant="16" id="wTZ-qe-74A"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oav-Nu-wWz">

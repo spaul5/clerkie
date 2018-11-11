@@ -20,6 +20,7 @@
 		6EC5CA4421977A8B0020C92C /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC5CA4021977A7E0020C92C /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6EC5CA4A21977B6B0020C92C /* AnalyticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC5CA4921977B6B0020C92C /* AnalyticsController.swift */; };
 		6EC5CA4C21977C9A0020C92C /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC5CA4B21977C9A0020C92C /* BarChart.swift */; };
+		6EC5CA4E2197961F0020C92C /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC5CA4D2197961F0020C92C /* LineChart.swift */; };
 		6EE3C90A2196271D00FF3BFF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3C9092196271D00FF3BFF /* TabBarController.swift */; };
 		6EE3C90D21962E4000FF3BFF /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3C90C21962E4000FF3BFF /* MessagesController.swift */; };
 		6EE3C90F21962FDC00FF3BFF /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE3C90E21962FDC00FF3BFF /* Objects.swift */; };
@@ -79,6 +80,7 @@
 		6EC5CA3A21977A7D0020C92C /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../../../Downloads/Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		6EC5CA4921977B6B0020C92C /* AnalyticsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsController.swift; sourceTree = "<group>"; };
 		6EC5CA4B21977C9A0020C92C /* BarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
+		6EC5CA4D2197961F0020C92C /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		6EE3C9092196271D00FF3BFF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		6EE3C90C21962E4000FF3BFF /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		6EE3C90E21962FDC00FF3BFF /* Objects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				6EC5CA4921977B6B0020C92C /* AnalyticsController.swift */,
 				6EC5CA4B21977C9A0020C92C /* BarChart.swift */,
+				6EC5CA4D2197961F0020C92C /* LineChart.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				6E16CEB4219219630092A16D /* AppDelegate.swift in Sources */,
 				6E16CEBC219219630092A16D /* clerkie_challenge.xcdatamodeld in Sources */,
 				6EC5CA4C21977C9A0020C92C /* BarChart.swift in Sources */,
+				6EC5CA4E2197961F0020C92C /* LineChart.swift in Sources */,
 				6EE3C9112196393700FF3BFF /* ChatController.swift in Sources */,
 				6E16CECC21921C9D0092A16D /* Utilities.swift in Sources */,
 				6EE3C90F21962FDC00FF3BFF /* Objects.swift in Sources */,

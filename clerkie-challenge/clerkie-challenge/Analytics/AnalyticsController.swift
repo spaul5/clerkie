@@ -8,7 +8,7 @@
 import UIKit
 import Charts
 
-class AnalyticsController: UIViewController, GetChartData {
+class AnalyticsController: UIViewController {
     
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mainTitle: UILabel!
@@ -40,6 +40,9 @@ class AnalyticsController: UIViewController, GetChartData {
             v.removeFromSuperview()
         }
         chartView.isHidden = true
+        
+        workoutDuration = [String]()
+        beatsPerMinute = [String]()
     }
     
     @IBAction func barChartTap(_ sender: Any) {
@@ -52,23 +55,42 @@ class AnalyticsController: UIViewController, GetChartData {
         switchButtons(sender)
         doBarChart(false)
     }
-
+    
+    @IBAction func lineChartTap(_ sender: Any) {
+        switchButtons(sender)
+        doLineChart()
+    }
+    
+    @IBAction func douLineChartTap(_ sender: Any) {
+        switchButtons(sender)
+        doLineChart(true)
+    }
+    
     func doBarChart(_ vertical: Bool = true) {
-        if vertical {
-            workoutDuration = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-            beatsPerMinute = ["76", "150", "160", "180", "195", "136", "195", "180", "164", "136"]
-        } else {
-            beatsPerMinute = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-            workoutDuration = ["76", "150", "160", "180", "195", "136", "195", "180", "164", "136"]
-        }
-        
-        self.getChartData(with: workoutDuration, values: beatsPerMinute)
-        
+        let dataPoints = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+        let values = ["76", "150", "160", "180", "195", "136", "195", "180", "164", "136"]
+    
         let barChart = BarChart(frame: chartView.bounds)
         barChart.vertical = vertical
-        barChart.delegate = self
+        barChart.populateData(dataPoints: dataPoints, v: values)
+        barChart.setBarChart()
         chartView.isHidden = false
         chartView.addSubview(barChart)
+    }
+    
+    func doLineChart(_ duo: Bool = false) {
+        let dataPoints = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+        var values = ["Workout BPM" : ["76", "150", "160", "180", "195", "136", "195", "180", "164", "136"]]
+        
+        if duo {
+            values["Restful BPM"] = ["60", "66", "74", "80", "72", "70", "68", "68", "64", "58"]
+        }
+        
+        let lineChart = LineChart(frame: chartView.bounds)
+        lineChart.populateData(dataPoints: dataPoints, v: values)
+        lineChart.setLineChart()
+        chartView.isHidden = false
+        chartView.addSubview(lineChart)
     }
     
     func switchButtons(_ sender: Any) {
@@ -87,10 +109,4 @@ public class ChartFormatter: NSObject, IAxisValueFormatter {
     public func setValues(values: [String]) {
         self.workoutDuration = values
     }
-}
-
-protocol GetChartData {
-    func getChartData(with dataPoints: [String], values: [String])
-    var workoutDuration: [String] {get set}
-    var beatsPerMinute: [String] {get set}
 }
