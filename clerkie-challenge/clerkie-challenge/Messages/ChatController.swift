@@ -72,7 +72,7 @@ class ChatController: UIViewController {
     }
     
     @IBAction func logoutTap(_ sender: Any) {
-        Utilities.shared.logout()
+        dismissFromLeft(completion: Utilities.shared.logout)
     }
     
     @IBAction func backTap(_ sender: Any) {
@@ -139,8 +139,13 @@ class ChatController: UIViewController {
         showHideGoButton(false)
         
         if message(at: messages.count - 2) == nil || message(at: messages.count - 2)!.sent {
-            sendFakeMessage("Lebroon Jaaames")
-            if fakeSend { sendFakeMessage("When I say LeBron James' name, I like to say it like: LeBroooon Jaaames. I'm his hype man.") }
+            if user.name == "Shouvik Paul" {
+                sendFakeMessage("Hi I am Shouvik Paul")
+                if fakeSend { sendFakeMessage("You should definitely hire me to work for you. It would be one of the better decisions you would have made.") }
+            } else {
+                sendFakeMessage("Lebroon Jaaames")
+                if fakeSend { sendFakeMessage("When I say LeBron James' name, I like to say it like: LeBroooon Jaaames.") }
+            }
         }
     }
     
