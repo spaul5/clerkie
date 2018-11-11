@@ -13,15 +13,11 @@ class AnalyticsController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var mainTitle: UILabel!
     
-    var workoutDuration = [String]()
-    var beatsPerMinute = [String]()
-    
-    func getChartData(with dataPoints: [String], values: [String]) {
-        print("get chart data")
-        self.workoutDuration = dataPoints
-        self.beatsPerMinute = values
-    }
-    
+    @IBOutlet weak var barChartButton: UIButton!
+    @IBOutlet weak var horizontalBarChartButton: UIButton!
+    @IBOutlet weak var lineChartButton: UIButton!
+    @IBOutlet weak var duoLineChart: UIButton!
+    @IBOutlet weak var pieChartButton: UIButton!
     
     @IBOutlet weak var chartView: UIView!
     
@@ -30,19 +26,36 @@ class AnalyticsController: UIViewController {
         
         backButton.isHidden = true
         backButton.setTitle("\u{3008}", for: .normal)
+        
+        barChartButton.layer.borderColor = UIColor.white.cgColor
+        barChartButton.layer.borderWidth = 1.0
+        
+        horizontalBarChartButton.layer.borderColor = UIColor.white.cgColor
+        horizontalBarChartButton.layer.borderWidth = 1.0
+        
+        lineChartButton.layer.borderColor = UIColor.white.cgColor
+        lineChartButton.layer.borderWidth = 1.0
+        
+        duoLineChart.layer.borderColor = UIColor.white.cgColor
+        duoLineChart.layer.borderWidth = 1.0
+        
+        pieChartButton.layer.borderColor = UIColor.white.cgColor
+        pieChartButton.layer.borderWidth = 1.0
+    }
+    
+    
+    @IBAction func logoutTap(_ sender: Any) {
+        Utilities.shared.logout()
     }
     
     @IBAction func backButtonTap(_ sender: Any) {
         print("back tap")
         mainTitle.text = "Analytics"
         backButton.isHidden = true
+        showHideChartView(false)
         for v in chartView.subviews {
             v.removeFromSuperview()
         }
-        chartView.isHidden = true
-        
-        workoutDuration = [String]()
-        beatsPerMinute = [String]()
     }
     
     @IBAction func barChartTap(_ sender: Any) {
@@ -66,31 +79,65 @@ class AnalyticsController: UIViewController {
         doLineChart(true)
     }
     
+    @IBAction func pieChartTap(_ sender: Any) {
+        switchButtons(sender)
+        doPieChart()
+    }
+    
     func doBarChart(_ vertical: Bool = true) {
-        let dataPoints = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+        var dataPoints = [String]()
+        for i in 1...10 { dataPoints.append(String(i)) }
         let values = ["76", "150", "160", "180", "195", "136", "195", "180", "164", "136"]
     
         let barChart = BarChart(frame: chartView.bounds)
         barChart.vertical = vertical
         barChart.populateData(dataPoints: dataPoints, v: values)
         barChart.setBarChart()
-        chartView.isHidden = false
+        showHideChartView(true)
         chartView.addSubview(barChart)
     }
     
     func doLineChart(_ duo: Bool = false) {
-        let dataPoints = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-        var values = ["Workout BPM" : ["76", "150", "160", "180", "195", "136", "195", "180", "164", "136"]]
+        var dataPoints = [String]()
+        var shouvikValues = [String]()
+        for i in 1...12 { dataPoints.append(String(i)); shouvikValues.append(String(i * i)); }
+        var values = ["Clerkie's growth with Shouvik" : shouvikValues ]
         
         if duo {
-            values["Restful BPM"] = ["60", "66", "74", "80", "72", "70", "68", "68", "64", "58"]
+            values["Clerkie's growth without Shouvik"] = ["1", "1.5", "2", "5", "10", "16", "27", "33", "47", "51", "55", "59"]
         }
         
         let lineChart = LineChart(frame: chartView.bounds)
         lineChart.populateData(dataPoints: dataPoints, v: values)
         lineChart.setLineChart()
-        chartView.isHidden = false
+        showHideChartView(true)
         chartView.addSubview(lineChart)
+    }
+    
+    func doPieChart() {
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+        let unitsSold = ["20", "4", "6", "3", "12", "16"]
+        
+        let pieChart = PieChart(frame: chartView.bounds)
+        pieChart.populateData(dataPoints: months, v: unitsSold)
+        pieChart.setPieChart()
+        showHideChartView(true)
+        chartView.addSubview(pieChart)
+    }
+    
+    func showHideChartView(_ show: Bool) {
+        if show {
+            chartView.isHidden = false
+            UIView.animate(withDuration: 0.25) {
+                self.chartView.alpha = 1.0
+            }
+        } else {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.chartView.alpha = 0.0
+            }) { _ in
+                self.chartView.isHidden = true
+            }
+        }
     }
     
     func switchButtons(_ sender: Any) {
@@ -100,13 +147,13 @@ class AnalyticsController: UIViewController {
 }
 
 public class ChartFormatter: NSObject, IAxisValueFormatter {
-    var workoutDuration = [String]()
+    var dataPoints = [String]()
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        return workoutDuration[Int(value)]
+        return dataPoints[Int(value)]
     }
     
     public func setValues(values: [String]) {
-        self.workoutDuration = values
+        self.dataPoints = values
     }
 }

@@ -17,8 +17,6 @@ class BarChart: UIView {
     var verticalBarChartView: BarChartView!
     var horizontalBarChartView: HorizontalBarChartView!
     
-    var dataEntry: [BarChartDataEntry] = []
-    
     var dataPoints = [String]()
     var values = [String]()
     
@@ -61,6 +59,7 @@ class BarChart: UIView {
         chartView.backgroundColor = UIColor.white
         
         let v = (vertical) ? self.values : self.values.reversed()
+        var dataEntry: [BarChartDataEntry] = []
         for i in 0..<dataPoints.count {
             dataEntry.append(BarChartDataEntry(x: Double(i), y: Double(v[i])!))
         }

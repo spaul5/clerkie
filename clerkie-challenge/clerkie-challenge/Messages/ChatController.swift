@@ -71,6 +71,10 @@ class ChatController: UIViewController {
         keyboardWillHideObserver = false
     }
     
+    @IBAction func logoutTap(_ sender: Any) {
+        Utilities.shared.logout()
+    }
+    
     @IBAction func backTap(_ sender: Any) {
         dismissFromLeft()
     }

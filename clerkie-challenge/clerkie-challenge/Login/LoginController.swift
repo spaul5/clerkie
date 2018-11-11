@@ -47,7 +47,32 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         signupOuterView.layer.borderColor = UIColor.clerkieRed.cgColor
         signupOuterView.layer.borderWidth = 1
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         showHideSignupView(false, animate: false)
+        
+        usernameTextField.text = nil
+        passwordTextField.text = nil
+        signupUsername.text = nil
+        signupPassword.text = nil
+        signupRepeatPassword.text = nil
+        
+        usernameError.isHidden = true
+        usernameError.alpha = 0.0
+        
+        loginError.isHidden = true
+        loginError.alpha = 0.0
+        
+        signupUsernameError.isHidden = true
+        signupUsernameError.alpha = 0.0
+        
+        signupError.isHidden = true
+        signupError.alpha = 0.0
+        
+        showHideGoButton(goButton, false)
+        showHideGoButton(signupGoButton, false)
     }
     
     @IBAction func goTap(_ sender: Any) {
@@ -63,12 +88,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 return false
             }
             print("username valid")
-//            if usernameValid(usernameTextField.text) {
-                usernameError.isHidden = true
-                usernameError.alpha = 0.0
-//            } else {
-//                showError(usernameError, nil)
-//            }
+            usernameError.isHidden = true
+            usernameError.alpha = 0.0
             
             usernameTextField.resignFirstResponder()
             passwordTextField.becomeFirstResponder()
@@ -81,12 +102,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 showError(signupUsernameError, nil)
                 return false
             }
-//            if usernameValid(signupUsername.text) {
-                signupUsernameError.isHidden = true
-                signupUsernameError.alpha = 0.0
-//            } else {
-//                showError(signupUsernameError, nil)
-//            }
+            
+            signupUsernameError.isHidden = true
+            signupUsernameError.alpha = 0.0
             
             signupUsername.resignFirstResponder()
             signupPassword.becomeFirstResponder()
@@ -187,8 +205,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signupButtonTap(_ sender: Any) {
-        performSegue(withIdentifier: "loginSegue", sender: nil)
-//        showHideSignupView(true)
+        showHideSignupView(true)
     }
     
     @IBAction func signupCloseTap(_ sender: Any) {

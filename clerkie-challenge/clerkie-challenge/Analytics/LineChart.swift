@@ -11,7 +11,6 @@ import Charts
 class LineChart: UIView {
     
     let lineChartView = LineChartView()
-    var dataEntry: [ChartDataEntry] = []
     
     var dataPoints = [String]()
     var values = [String : [String]]()
@@ -35,7 +34,7 @@ class LineChart: UIView {
         chartView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         chartView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         
-        chartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+        chartView.animate(yAxisDuration: 2.0, easingOption: .easeInBounce)
         
         setLineChartData()
     }

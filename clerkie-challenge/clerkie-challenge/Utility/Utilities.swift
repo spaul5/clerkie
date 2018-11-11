@@ -9,6 +9,13 @@ import UIKit
 
 class Utilities {
     static let shared = Utilities()
+    
+    weak var tabBarRef: UITabBarController? = nil
+    
+    func logout() {
+        tabBarRef?.dismiss(animated: true)
+        CoreDataModel.shared.logout()
+    }
 }
 
 let __firstpart = "[A-Z0-9a-z]([A-Z0-9a-z._%+-]{0,30}[A-Z0-9a-z])?"

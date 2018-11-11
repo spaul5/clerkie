@@ -31,6 +31,10 @@ class MessagesController: UIViewController {
         }
     }
     
+    @IBAction func logoutTap(_ sender: Any) {
+        Utilities.shared.logout()
+    }
+    
     @IBAction func moreTap(_ sender: Any) {
         print("more tap")
     }
